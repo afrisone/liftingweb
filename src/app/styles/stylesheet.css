@@ -1,0 +1,14 @@
+input {
+  margin: 0 5px;
+}
+form {
+  width: 500px;
+}
+span.workoutType {
+  padding: 2px;
+  cursor: pointer;
+}  
+
+.active {
+  background-color: lightgrey;
+}
