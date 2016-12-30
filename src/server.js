@@ -39,11 +39,11 @@ app.post('/testingPost', function (req, res) {
   }
 
   insertIntoDatabase(req.body.targetArea, req.body.workoutName, req.body.workoutWeight)
-  
+
 })
 
 app.get('/getWorkouts', function (req, res) {
-  getFromDatabase(res)  
+  getFromDatabase(res)
 })
 
 function connectToDatabase() {
@@ -56,9 +56,9 @@ function connectToDatabase() {
 }
 
 function insertIntoDatabase(area, name, weight) {
-  const query = `INSERT INTO workouts VALUES("${area}", "${name}", ${weight})` 
+  const query = `INSERT INTO workouts VALUES("${area}", "${name}", ${weight})`
   const connection = connectToDatabase()
-  
+
   connection.connect()
   connection.query(query, function(err, rows, fields) {
     if(err) {
@@ -70,8 +70,8 @@ function insertIntoDatabase(area, name, weight) {
 
 function getFromDatabase(res) {
   flushPretendDatabase()
-  
-  const query = `SELECT * FROM workouts` startDe
+
+  const query = `SELECT * FROM workouts`
   const connection = connectToDatabase()
   connection.connect()
   connection.query(query, function(err, rows, fields) {
@@ -83,8 +83,6 @@ function getFromDatabase(res) {
     console.log(pretendDatabase)
   })
   connection.end()
-  
-  // return pretendDatabase
 }
 
 function flushPretendDatabase() {
