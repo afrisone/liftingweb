@@ -1,9 +1,17 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const methodOverride = require('method-override')
-const mysql = require('mysql')
-const app = express()
-const port = 5000
+var stormpath = require('express-stormpath');
+var bodyParser = require('body-parser');
+var morgan = require('morgan');
+var path = require('path');
+var express = require('express');
+var webpack = require('webpack');
+var config = require('./webpack.config');
+var ora = require('ora');
+var mysql = require('mysql')
+
+var port = process.env.PORT || 5000;
+
+var app = express();
+// var compiler = webpack(config);
 
 const pretendDatabase = {
     arms: [
@@ -18,11 +26,12 @@ const pretendDatabase = {
     ]
   }
 
+app.use('/css', express.static(__dirname + '/src/css'));
 
 // Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(methodOverride())
+// app.use(methodOverride())
 
 app.use((request, response, next) => {
 	response.header('Access-Control-Allow-Origin', '*')
