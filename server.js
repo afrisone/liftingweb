@@ -10,8 +10,14 @@ var mysql = require('mysql')
 
 var port = process.env.PORT || 5000;
 
-var app = express();
-// var compiler = webpack(config);
+var app = express()
+var compiler = webpack(config)
+
+app.use(require('webpack-dev-middleware')(compiler, {
+  noInfo: true,
+  publicPath: config.output.publicPath
+}))
+app.use(require("webpack-hot-middleware")(compiler));
 
 const pretendDatabase = {
     arms: [
@@ -54,6 +60,10 @@ app.post('/testingPost', function (req, res) {
 app.get('/getWorkouts', function (req, res) {
   getFromDatabase(res)
 })
+
+app.get('*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'src/html/index.html'));
+});
 
 function connectToDatabase() {
   return mysql.createConnection({

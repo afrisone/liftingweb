@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node_modules/.bin/webpack-dev-server --history-api-fallback --config webpack.config.js --content-base src/html --progress --color --inline --hot --host 0.0.0.0 --port 3000",
+    "start": "node server.js",
     "test": "run unit"
   },
   "author": "",

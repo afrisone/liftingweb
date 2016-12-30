@@ -2,8 +2,6 @@
 var path = require('path');
 var webpack = require('webpack');
 
-const BUILD_DIR = path.resolve(__dirname, 'src')
-
 module.exports = {
   entry: [
     './src/js/app.js'
@@ -16,16 +14,14 @@ module.exports = {
   },
   module: {
     loaders: [{
-      test: /\.js$/,
+      test: /\.jsx?$/,
       loader: 'babel-loader',
       include: path.join(__dirname, 'src/js'),
       query: {
-          "presets": [
-            "es2015",
-            "react",
-            "stage-0"
-          ],
-          plugins: ["transform-decorators-legacy"]
+        presets: [
+          "es2015"
+        ],
+        plugins: ["transform-decorators-legacy"]
       }
     }]
   }
