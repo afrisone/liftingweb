@@ -26,30 +26,28 @@ class WorkoutList extends React.Component {
     const workoutArray = this.state.workouts[this.props.myState.getSel().toLowerCase()].map((workout) => {
       return (<WorkoutRow name={workout.workoutName} weight={workout.workoutWeight} key={workout.workoutName} />)
     })
-    
+
     return <div>
          {workoutArray}
       </div>
   }
-  
+
   getWorkoutsFromServer() {
     request
-      .get('http://localhost:5000/getWorkouts')
+      .get('/getWorkouts')
       .set('Accept', 'application/json')
       .end((err: any, res: any): void => {
         this.populateWorkouts(res.body)
       })
   }
-  
+
   populateWorkouts(workoutObj) {
     this.setState({workouts: workoutObj})
   }
-  
+
   componentWillReceiveProps(props) {
     setTimeout(() => { // API calls runs asynchronously so wait 1/10th of a second
       this.getWorkoutsFromServer()
-      
-
     }, 100)
   }
 }

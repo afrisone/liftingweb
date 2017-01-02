@@ -10,7 +10,6 @@ class WorkoutRow extends React.Component {
     const workoutString = `${this.props.name} : ${this.props.weight}`
     return <div><span>{workoutString}</span></div>
   }
-
 }
 
 export default WorkoutRow

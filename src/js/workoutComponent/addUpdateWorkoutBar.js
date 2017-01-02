@@ -24,12 +24,12 @@ class AddUpdateWorkoutBar extends React.Component {
         <input type="submit" value="Submit" />
       </form>
   }
-  
+
   handleSubmit(evt) {
     const workoutName = document.querySelector('#e1').value
     const workoutValue = document.querySelector('#e2').value
-    const targetArea = document.querySelector('input[name="type"]:checked').value;
-    // debugger
+    const targetArea = document.querySelector('input[name="type"]:checked').value
+
     this.setState({
       workoutName: workoutName,
       workoutWeight: workoutValue,
@@ -37,25 +37,22 @@ class AddUpdateWorkoutBar extends React.Component {
     }, () => {
       this.sendWorkoutToServer()
     })
-    
-    
   }
-  
+
   sendWorkoutToServer() {
     request
-      .post('http://localhost:5000/testingPost')
+      .post('/testingPost')
       .set('Accept', 'application/json')
       .send({ workoutName: this.state.workoutName, workoutWeight: this.state.workoutWeight, targetArea: this.state.targetArea })
       .end((err: any, res: any): void => {
         console.log("Workout Sent")
       })
   }
-  
+
   clearForm(input1, input2) {
     input1.value = ''
     input2.value = ''
   }
-
 }
 
 export default AddUpdateWorkoutBar
